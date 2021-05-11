@@ -15,7 +15,7 @@
             background-color: rgb(44, 48, 48);
             font-family: sans-serif;
             color: rgb(239, 239, 239);
-            font-size: 6vh;
+            font-size: 3em;
             font-weight: 300;
             height: 100vh;
             display: flex;
@@ -27,11 +27,29 @@
         div {
             margin-top: 1vh;
         }
+
+        label {
+            font-size: 0.4em;
+        }
     </style>
 </head>
 
 
 <body>
+
+    <div>
+        <label for="userYear">year</label>
+        <input id="userYear" type="number" value="" placeholder="e.g. 2021">
+
+        <label for="userMonth">month</label>
+        <input id="userMonth" type="number" value="" placeholder="e.g. 8">
+
+        <label for="userDay">day</label>
+        <input id="userDay" type="number" value="" placeholder="17">
+
+        <button onclick="enterSpecialDate()">Enter</button>
+
+    </div>
 
     <div>
 
@@ -62,21 +80,35 @@
     </div>
 
 
+
+
     <script>
-       
-        let userYear = 2021;
-        let userMonth = 06-1; /*no idea why this happens*/
-        let userDay = 04;
 
-        const userOccasion = 'I need to present this project';
+        let userYear = userYearEntered;
+        let userMonth = userMonthEntered;
+        let userDay = userDayEntered;
+
         const userDate = new Date(userYear, userMonth, userDay, 0, 0, 0);
+        const userOccasion = 'I need to present this project';
+        console.log(userDate);
 
+
+        function enterSpecialDate() {
+            var userYearEntered = document.getElementById('userYear').value;
+            console.log(userYearEntered);
+
+            var userMonthEntered = document.getElementById('userMonth').value;
+            console.log(userMonthEntered);
+
+            var userDayEntered = document.getElementById('userDay').value;
+            console.log(userDayEntered);
+        }
 
         /*create countdown timer using substraction*/
         function updateCountdowntime() {
             const currentTime = new Date();
             const diff = userDate - currentTime;
-            console.log (diff);
+            console.log(diff);
 
             /* we've been given the difference in milliseconds, so some division is needed */
             const d = Math.floor(diff / 1000 / 60 / 60 / 24);
