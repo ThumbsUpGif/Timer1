@@ -12,7 +12,7 @@
         }
 
         body {
-            background-color: rgb(44, 48, 48);
+            background-color: rgb(12, 84, 84);
             font-family: sans-serif;
             color: rgb(239, 239, 239);
             font-size: 6vh;
@@ -64,22 +64,23 @@
 
 
     <script>
+
+        let userYear = 2021;
+        let userMonth = 5;
+        let userDay = 12;
        
 
-        /* from the example; hardcode a date using built in JS functions */
-        const currentYear = new Date().getFullYear();
-        const newYearTime = new Date(`January 1 ${currentYear +1} 00:00:00`);
-
-
-        /* But instead I would like to create a variable(?) entered by the user
-
-         var specialDate = ??????? */
+        /* establish current and future date */
+        const today = new Date();
+        console.log(today);
+        const specialDate = new Date(userYear, userMonth-1, userDay, 0, 0, 0);
+        console.log(specialDate);
 
 
         /*create countdown timer using substraction*/
         function updateCountdowntime() {
-            const currentTime = new Date();
-            const diff = newYearTime - currentTime;
+            const diff = specialDate - today;
+            console.log(diff);
 
             /* we've been given the difference in milliseconds, so some division is needed */
             const d = Math.floor(diff / 1000 / 60 / 60 / 24);
@@ -98,6 +99,7 @@
         }
 
         setInterval(updateCountdowntime, 1000);
+        
     </script>
 
 </body>
