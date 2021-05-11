@@ -12,7 +12,7 @@
         }
 
         body {
-            background-color: rgb(12, 84, 84);
+            background-color: rgb(44, 48, 48);
             font-family: sans-serif;
             color: rgb(239, 239, 239);
             font-size: 6vh;
@@ -24,19 +24,18 @@
             justify-content: center;
         }
 
-
         div {
             margin-top: 1vh;
         }
     </style>
-
 </head>
+
 
 <body>
 
     <div>
 
-        <p>There are</p>
+        <p>there are</p>
 
         <div class="time">
             <span id="days"></span>
@@ -58,36 +57,32 @@
             <span>seconds</span>
         </div>
 
-        <p>until (string)</p>
+        <p>until <span id="userOccasion"></span></p>
 
     </div>
 
 
     <script>
-
-        let userYear = 2021;
-        let userMonth = 5;
-        let userDay = 12;
        
+        let userYear = 2021;
+        let userMonth = 06-1; /*no idea why this happens*/
+        let userDay = 04;
 
-        /* establish current and future date */
-        const today = new Date();
-        console.log(today);
-        const specialDate = new Date(userYear, userMonth-1, userDay, 0, 0, 0);
-        console.log(specialDate);
+        const userOccasion = 'I need to present this project';
+        const userDate = new Date(userYear, userMonth, userDay, 0, 0, 0);
 
 
         /*create countdown timer using substraction*/
         function updateCountdowntime() {
-            const diff = specialDate - today;
-            console.log(diff);
+            const currentTime = new Date();
+            const diff = userDate - currentTime;
+            console.log (diff);
 
             /* we've been given the difference in milliseconds, so some division is needed */
             const d = Math.floor(diff / 1000 / 60 / 60 / 24);
             const h = Math.floor(diff / 1000 / 60 / 60) % 24;
             const m = Math.floor(diff / 1000 / 60) % 60;
             const s = Math.floor(diff / 1000) % 60;
-            // console.log(s);
 
             /* send values back into HTML document */
 
@@ -96,10 +91,10 @@
             document.getElementById('minutes').innerHTML = m;
             document.getElementById('seconds').innerHTML = s;
 
+            document.getElementById('userOccasion').innerHTML = userOccasion;
         }
 
         setInterval(updateCountdowntime, 1000);
-        
     </script>
 
 </body>
