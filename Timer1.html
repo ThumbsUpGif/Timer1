@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(44, 48, 48);
+            font-family: sans-serif;
+            color: rgb(239, 239, 239);
+            font-size: 6vh;
+            font-weight: 300;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        div {
+            margin-top: 1vh;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div>
+
+        <p>There are</p>
+
+        <div class="time">
+            <span id="days"></span>
+            <span>days</span>
+        </div>
+
+        <div class="time">
+            <span id="hours"></span>
+            <span>hours</span>
+        </div>
+
+        <div class="time">
+            <span id="minutes"></span>
+            <span>minutes</span>
+        </div>
+
+        <div class="time">
+            <span id="seconds"></span>
+            <span>seconds</span>
+        </div>
+
+        <p>until (string)</p>
+
+    </div>
+
+
+    <script>
+        /* DOM selectors */
+        const days = document.getElementById('days');
+        const hours = document.getElementById('hours');
+        const minutes = document.getElementById('minutes');
+        const seconds = document.getElementById('seconds');
+
+
+        /* from the example; hardcode a date using built in JS functions */
+        const currentYear = new Date().getFullYear();
+        const newYearTime = new Date(`January 1 ${currentYear +1} 00:00:00`);
+
+
+        /* But instead I would like to create a variable(?) entered by the user
+
+         var specialDate = ??????? */
+
+
+        /*create countdown timer using substraction*/
+        function updateCountdowntime() {
+            const currentTime = new Date();
+            const diff = newYearTime - currentTime;
+
+            /* we've been given the difference in milliseconds, so some division is needed */
+            const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+            const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+            const m = Math.floor(diff / 1000 / 60) % 60;
+            const s = Math.floor(diff / 1000) % 60;
+            // console.log(s);
+
+            /* send values back into HTML document */
+            days.innerHTML = d;
+            hours.innerHTML = h;
+            minutes.innerHTML = m;
+            seconds.innerHTML = s;
+        }
+
+        setInterval(updateCountdowntime, 1000);
+    </script>
+
+</body>
+
+</html>
