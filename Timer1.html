@@ -64,12 +64,7 @@
 
 
     <script>
-        /* DOM selectors */
-        const days = document.getElementById('days');
-        const hours = document.getElementById('hours');
-        const minutes = document.getElementById('minutes');
-        const seconds = document.getElementById('seconds');
-
+       
 
         /* from the example; hardcode a date using built in JS functions */
         const currentYear = new Date().getFullYear();
@@ -94,10 +89,12 @@
             // console.log(s);
 
             /* send values back into HTML document */
-            days.innerHTML = d;
-            hours.innerHTML = h;
-            minutes.innerHTML = m;
-            seconds.innerHTML = s;
+
+            document.getElementById('days').innerHTML = d;
+            document.getElementById('hours').innerHTML = h;
+            document.getElementById('minutes').innerHTML = m;
+            document.getElementById('seconds').innerHTML = s;
+
         }
 
         setInterval(updateCountdowntime, 1000);
