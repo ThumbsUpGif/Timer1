@@ -12,9 +12,9 @@
         }
 
         body {
-            background-color: rgb(33, 28, 25);
+            background-color: rgb(138, 212, 191);
             font-family: Arial, Helvetica, sans-serif;
-            color: rgb(239, 239, 239);
+            color: rgb(17, 27, 24);
             font-size: 3em;
             font-weight: 300;
             height: 100vh;
@@ -33,20 +33,60 @@
             font-size: 0.4em;
         }
 
-        input {
-            border: 0;
-            color: rgb(50, 50, 50);
-            font-weight: 100;
-            border-radius:2px;
-            box-shadow:0 0 4px rgb(239, 239, 239);
+   
+        input,
+        input[type="datetime-local"]  {
+            appearance: none;
+            -webkit-appearance: none;
+            color: #023d42;
+            font-family: inherit;
+            font-size: 0.4em;
+            border: 0px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 5px;
+            display: inline-block;
+            visibility: visible;
         }
 
-        :moz-placeholder {
-            color: lightgrey;
+        input[type="datetime-local"],
+        focus {
+            color: grey;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
         }
 
+        input::-webkit-datetime-edit-ampm-field:focus,
+        input::-webkit-datetime-edit-day-field:focus,
+        input::-webkit-datetime-edit-hour-field:focus,
+        input::-webkit-datetime-edit-millisecond-field:focus,
+        input::-webkit-datetime-edit-minute-field:focus,
+        input::-webkit-datetime-edit-month-field:focus,
+        input::-webkit-datetime-edit-second-field:focus,
+        input::-webkit-datetime-edit-week-field:focus,
+        input::-webkit-datetime-edit-year-field:focus {
+            background-color: rgb(188, 203, 199);
+            color: inherit;
+            outline: none;
+        }
+
+        input::-webkit-datetime-edit-year-field[disabled],
+        input::-webkit-datetime-edit-month-field[disabled],
+        input::-webkit-datetime-edit-week-field[disabled],
+        input::-webkit-datetime-edit-day-field[disabled],
+        input::-webkit-datetime-edit-ampm-field[disabled],
+        input::-webkit-datetime-edit-hour-field[disabled],
+        input::-webkit-datetime-edit-millisecond-field[disabled],
+        input::-webkit-datetime-edit-minute-field[disabled],
+        input::-webkit-datetime-edit-second-field[disabled] {
+            background-color: rgb(188, 203, 199);
+            color: inherit;
+            outline: none;
+        }
+
+        :moz-placeholder 
         ::-webkit-input-placeholder {
-            color: lightgrey;
+            color: grey;
         }
 
     </style>
@@ -54,15 +94,21 @@
 
 
 <body>
+
     <div id="input-hide">
-        
+
         <p>Count down to your special day!</p>
 
         <label for="userOccasion">what is the occasion?</label>
         <input id="userOccasion" type="text" value="" placeholder="e.g. my birthday">
         <br>
 
-        <p>when?</p>
+        <label for="special-date">when is it?</label>
+
+        <!-- <input type="date" id="special-date" name="" value="" min="2021-05-01" max=""> -->
+
+        <input type="datetime-local" id="special-date" name="" value="" min="2021-05-01" max="">
+        <!-- <p>when?</p>
         <label for="userYear">year:</label>
         <input id="userYear" type="number" value="" placeholder="e.g. 2021">
         <br>
@@ -71,9 +117,9 @@
         <br>
         <label for="userDay">day:</label>
         <input id="userDay" type="number" value="" placeholder="e.g. 17">
+ -->
 
-        
-       
+
 
         <br>
 
@@ -114,20 +160,9 @@
 
     <script>
         function enterSpecialDate() {
-            var userYearEntered = document.getElementById('userYear').value;
-            console.log(userYearEntered);
-
-            var userMonthEntered = document.getElementById('userMonth').value;
-            console.log(userMonthEntered);
-
-            var userDayEntered = document.getElementById('userDay').value;
-            console.log(userDayEntered);
-
-            var userYear = userYearEntered;
-            var userMonth = userMonthEntered;
-            var userDay = userDayEntered;
-
-            var userDate = new Date(userYear, userMonth, userDay, 0, 0, 0);
+            
+            var userDate = new Date(document.getElementById('special-date').value);
+            console.log(userDate);
 
             const currentTime = new Date();
             const diff = userDate - currentTime;
