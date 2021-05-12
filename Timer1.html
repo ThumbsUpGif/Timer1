@@ -13,7 +13,7 @@
 
         body {
             background-color: rgb(33, 28, 25);
-            font-family: sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             color: rgb(239, 239, 239);
             font-size: 3em;
             font-weight: 300;
@@ -32,29 +32,56 @@
         label {
             font-size: 0.4em;
         }
+
+        input {
+            border: 0;
+            color: rgb(50, 50, 50);
+            font-weight: 100;
+            border-radius:2px;
+            box-shadow:0 0 4px rgb(239, 239, 239);
+        }
+
+        :moz-placeholder {
+            color: lightgrey;
+        }
+
+        ::-webkit-input-placeholder {
+            color: lightgrey;
+        }
+
     </style>
 </head>
 
 
 <body>
-    <div id="input-field">
+    <div id="input-hide">
+        
+        <p>Count down to your special day!</p>
+
+        <label for="userOccasion">what is the occasion?</label>
+        <input id="userOccasion" type="text" value="" placeholder="e.g. my birthday">
+        <br>
+
+        <p>when?</p>
         <label for="userYear">year:</label>
         <input id="userYear" type="number" value="" placeholder="e.g. 2021">
-
+        <br>
         <label for="userMonth">month:</label>
         <input id="userMonth" type="number" value="" placeholder="e.g. 8">
-
+        <br>
         <label for="userDay">day:</label>
         <input id="userDay" type="number" value="" placeholder="e.g. 17">
 
-        <label for="userOccasion">occasion:</label>
-        <input id="userOccasion" type="text" value="" placeholder="e.g. my birthday">
+        
+       
+
+        <br>
 
         <button onclick="enterSpecialDate()">Enter</button>
 
     </div>
 
-    <div>
+    <div id="countdown-hide">
 
         <p>there are</p>
 
@@ -86,7 +113,6 @@
 
 
     <script>
-
         function enterSpecialDate() {
             var userYearEntered = document.getElementById('userYear').value;
             console.log(userYearEntered);
@@ -128,6 +154,26 @@
         }
         setInterval(enterSpecialDate, 1000);
 
+        /*peekaboo!*/
+        let hideInput = document.getElementById('input-hide');
+        console.log(hideInput);
+        let hideCountdown = document.getElementById('countdown-hide');
+        console.log(hideCountdown);
+        hideCountdown.style.display = 'none';
+
+        let button = document.querySelector("button");
+        console.log(button);
+
+        button.addEventListener('click', () => {
+            if (hideInput.style.display === 'none') {
+                hideInput.style.display = 'block';
+
+            } else {
+                hideInput.style.display = 'none';
+                hideCountdown.style.display = 'block';
+            }
+
+        })
     </script>
 
 </body>
