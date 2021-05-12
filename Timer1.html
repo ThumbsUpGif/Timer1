@@ -12,9 +12,9 @@
         }
 
         body {
-            background-color: rgb(33, 28, 25);
-            font-family: sans-serif;
-            color: rgb(239, 239, 239);
+            background-color: rgb(244, 231, 218);
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(17, 27, 24);
             font-size: 3em;
             font-weight: 300;
             height: 100vh;
@@ -32,29 +32,106 @@
         label {
             font-size: 0.4em;
         }
+
+   
+        input,
+        input[type="datetime-local"]  {
+            appearance: none;
+            -webkit-appearance: none;
+            color: #023d42;
+            font-family: inherit;
+            font-size: 0.4em;
+            border: 0px;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 5px;
+            display: inline-block;
+            visibility: visible;
+        }
+
+        input[type="datetime-local"],
+        focus {
+            color: grey;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+        }
+
+        input::-webkit-datetime-edit-ampm-field:focus,
+        input::-webkit-datetime-edit-day-field:focus,
+        input::-webkit-datetime-edit-hour-field:focus,
+        input::-webkit-datetime-edit-millisecond-field:focus,
+        input::-webkit-datetime-edit-minute-field:focus,
+        input::-webkit-datetime-edit-month-field:focus,
+        input::-webkit-datetime-edit-second-field:focus,
+        input::-webkit-datetime-edit-week-field:focus,
+        input::-webkit-datetime-edit-year-field:focus {
+            background-color: rgb(188, 203, 199);
+            color: inherit;
+            outline: none;
+        }
+
+        input::-webkit-datetime-edit-year-field[disabled],
+        input::-webkit-datetime-edit-month-field[disabled],
+        input::-webkit-datetime-edit-week-field[disabled],
+        input::-webkit-datetime-edit-day-field[disabled],
+        input::-webkit-datetime-edit-ampm-field[disabled],
+        input::-webkit-datetime-edit-hour-field[disabled],
+        input::-webkit-datetime-edit-millisecond-field[disabled],
+        input::-webkit-datetime-edit-minute-field[disabled],
+        input::-webkit-datetime-edit-second-field[disabled] {
+            background-color: rgb(188, 203, 199);
+            color: inherit;
+            outline: none;
+        }
+
+        :moz-placeholder 
+        ::-webkit-input-placeholder {
+            color: grey;
+        }
+
     </style>
 </head>
 
 
 <body>
-    <div id="input-field">
+
+    <div id="input-hide">
+
+        <p>Count down to your special day!</p>
+
+       <label for="userOccasion">what is the occasion?</label>
+        <input id="userOccasion" type="text" value="" placeholder="e.g. my birthday">
+       
+        <br>
+
+        <label for="special-date">when is it?</label>
+
+        <br>
+
+        <!-- <input type="date" id="special-date" name="" value="" min="2021-05-01" max=""> -->
+<!-- 
+        <input type="datetime-local" id="special-date" name="" value="" min="2021-05-01" max=""> -->
+        
+        
         <label for="userYear">year:</label>
         <input id="userYear" type="number" value="" placeholder="e.g. 2021">
-
+        <br>
         <label for="userMonth">month:</label>
         <input id="userMonth" type="number" value="" placeholder="e.g. 8">
-
+        <br>
         <label for="userDay">day:</label>
         <input id="userDay" type="number" value="" placeholder="e.g. 17">
 
-        <label for="userOccasion">occasion:</label>
-        <input id="userOccasion" type="text" value="" placeholder="e.g. my birthday">
+
+
+
+        <br>
 
         <button onclick="enterSpecialDate()">Enter</button>
 
     </div>
 
-    <div>
+    <div id="countdown-hide">
 
         <p>there are</p>
 
@@ -86,8 +163,8 @@
 
 
     <script>
-
         function enterSpecialDate() {
+            
             var userYearEntered = document.getElementById('userYear').value;
             console.log(userYearEntered);
 
@@ -128,6 +205,26 @@
         }
         setInterval(enterSpecialDate, 1000);
 
+        /*peekaboo!*/
+        let hideInput = document.getElementById('input-hide');
+        console.log(hideInput);
+        let hideCountdown = document.getElementById('countdown-hide');
+        console.log(hideCountdown);
+        hideCountdown.style.display = 'none';
+
+        let button = document.querySelector("button");
+        console.log(button);
+
+        button.addEventListener('click', () => {
+            if (hideInput.style.display === 'none') {
+                hideInput.style.display = 'block';
+
+            } else {
+                hideInput.style.display = 'none';
+                hideCountdown.style.display = 'block';
+            }
+
+        })
     </script>
 
 </body>
